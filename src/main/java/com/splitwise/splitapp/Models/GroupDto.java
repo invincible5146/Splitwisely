@@ -17,7 +17,7 @@ import lombok.EqualsAndHashCode;
 @Data
 public class GroupDto extends Auditable<String> {
     // public String userName;
-    public Long phoneNumber;
+    // public Long phoneNumber;
     public String groupName;
     public List<String>groupMembers;
 }

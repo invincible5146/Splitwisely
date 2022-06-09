@@ -14,16 +14,8 @@ public class CreateGroupImpl implements CreateGroup{
     private GroupRepository groupRepository;
 
     @Override
-    public void createGroup(GroupDto groupDto) {
-        System.out.println("service");
-        System.out.println(groupDto.groupName);
-        System.out.println(groupDto.phoneNumber);
-        System.out.println(groupDto.groupMembers);
-        System.out.println("service");
-
+    public void createGroup(GroupDto groupDto) { 
         Group group = new Group();
-        // group.setUserName(groupDto.userName);
-        group.setPhoneNumber(groupDto.phoneNumber);
         group.setGroupName(groupDto.groupName);
         group.setGroupMembers(groupDto.getGroupMembers());
         groupRepository.save(group);
