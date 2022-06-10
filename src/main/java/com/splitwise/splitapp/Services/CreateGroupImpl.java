@@ -14,10 +14,11 @@ public class CreateGroupImpl implements CreateGroup{
     private GroupRepository groupRepository;
 
     @Override
-    public void createGroup(GroupDto groupDto) { 
+    public void createGroup(GroupDto groupDto,Long userId) { 
         Group group = new Group();
         group.setGroupName(groupDto.groupName);
         group.setGroupMembers(groupDto.getGroupMembers());
+        group.setUserId(userId);
         groupRepository.save(group);
         System.out.println("done");
     }

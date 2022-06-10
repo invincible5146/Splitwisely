@@ -1,6 +1,5 @@
 package com.splitwise.splitapp.Services;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +23,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
              response.put("result", "NOT VERIFIED");
          } else if(password.equals(user.getPassword())){
             response.put("result", "VERIFIED");
+            response.put("id", String.valueOf(user.getUserId()));
          } else{
             response.put("result", "Wrong Password");
          }
@@ -42,6 +42,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             newUser.setPassword(password);
             userRepository.save(newUser);
             response.put("result", "SUCCESS");
+            response.put("id", String.valueOf(newUser.getUserId()));
         }
         return response;
     }
