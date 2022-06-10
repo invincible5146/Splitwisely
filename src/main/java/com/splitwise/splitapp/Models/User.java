@@ -1,6 +1,5 @@
 package com.splitwise.splitapp.Models;
 
-import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +24,7 @@ public class User {
     
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    BigDecimal userId;
+    Long userId;
 
     @Column(name = "email")
     String email;
