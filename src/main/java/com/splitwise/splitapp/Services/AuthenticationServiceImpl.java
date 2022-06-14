@@ -27,6 +27,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
          } else{
             response.put("result", "Wrong Password");
          }
+         System.out.println("checking the pull request");
          return response;
     }
 
@@ -46,5 +47,4 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
         return response;
     }
-    
 }
