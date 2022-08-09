@@ -1,6 +1,7 @@
 # Splitwisely
 The goal of this project is to create a simple expense tracker in which a group of people or particular two person can manage their expenses and get a summary of their balance.
 
+Live API- https://splitwisely-sachin.herokuapp.com/api/v1
 ## Features - 
 1. Ability To register new user with Name,PhoneNumber and password
 2. Verify whether a user is registered in database or not
