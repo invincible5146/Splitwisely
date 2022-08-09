@@ -30,3 +30,4 @@
 - Add an expense with a user => userIds
 - Add an expense in group => groupID
 
+Live API- https://splitwisely-sachin.herokuapp.com/api/v1
