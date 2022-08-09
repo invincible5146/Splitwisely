@@ -1,70 +1,50 @@
 package com.splitwise.splitapp.Models;
 
-import java.util.HashSet;
+import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
-public class User extends AuditableEntity{
-	private static Long ID = 1L;
-	private String userName;
-	private String phNumber;
-	
-	//Store the salted hashed password
-	private String password;
-	
-	private Set<Expense> expenses;
-	private Set<Group> groups;
-	
-	public User(String name, String phNo, String password) {
-		super(ID++);
-		this.userName = name;
-		this.phNumber = phNo;
-		//don't directly store it
-		
-		this.password = password;
-		this.expenses = new HashSet<Expense>();
-		this.groups = new HashSet<Group>();
-	}	
-	
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String name) {
-		this.userName = name;
-	}
-	public String getPhNumber() {
-		return phNumber;
-	}
-	public void setPhNumber(String phNumber) {
-		this.phNumber = phNumber;
-	}
-	public Set<Expense> getExpenses() {
-		return expenses;
-	}
-	
-	public Set<Group> getGroups() {
-		return groups;
-	}
-	
-	public String toString() {
-		StringBuilder userJson = new StringBuilder();
-		userJson.append("ID: "+this.getId()+'\n');
-		userJson.append("Username: "+this.userName+'\n');
-		userJson.append("ph Number: "+this.phNumber);
-		return userJson.toString();
-		
-	}
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-	public void addExpense(Expense expense) {
-		this.expenses.add(expense);
-		
-	}
+import org.hibernate.annotations.TypeDef;
 
-	public void addGroup(Group group) {
-		this.groups.add(group);
-		
-	}
-	
-	
-	
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Entity
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
+@Table(name="users")
+public class User implements Serializable {
+
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    Long userId;
+
+    @Column(name = "userName")
+    String userName;
+
+    @Column(name = "phone")
+    String phoneNumber;
+
+	@Column(name = "password")
+    String password;
+
+	@Column(name="expenses")
+	@ElementCollection(targetClass=Expense.class)
+	List<Expense> expenses;
+
+	@Column(name="groups")
+	@ElementCollection(targetClass=Group.class)
+	Set<Group> groups;
 
 }

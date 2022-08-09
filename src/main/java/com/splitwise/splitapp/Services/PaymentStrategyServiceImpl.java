@@ -1,16 +1,19 @@
 package com.splitwise.splitapp.Services;
 
-import java.util.Set;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
 
 import com.splitwise.splitapp.Models.Expense;
 import com.splitwise.splitapp.Models.User;
 
-public class SelfPayPaymentStrategy implements PaymentStrategy {
+@Service
+public class PaymentStrategyServiceImpl implements PaymentStrategyService {
 
 	@Override
-	public void calculatePaidAmount(Expense expense) {
+	public void calculatePaidAmount(Expense expense,List<User>participants) {
 		User payer = expense.getCreatedBy();
-		Set<User> participants = expense.getParticipants();
+		// List<User> participants = expense.getParticipants();
 		Double amountPaid = expense.getTotalAmount();
 		for(User participant : participants) {
 			if(participant.equals(payer)) {

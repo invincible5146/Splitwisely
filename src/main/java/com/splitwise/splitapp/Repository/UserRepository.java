@@ -8,6 +8,6 @@ import com.splitwise.splitapp.Models.User;
 
 public interface UserRepository extends JpaRepository<User,Long> {
 
-    @Query(value = "select * from users where users.username=?1", nativeQuery = true)
-    User getUser(String userName);
+    @Query(value = "select * from users where users.phone=?1", nativeQuery = true)
+    User getUser(String phoneNumber);
 }
